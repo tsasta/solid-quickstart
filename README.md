@@ -1,74 +1,76 @@
-# SolidStart
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airline Departure Board Dashboard</title>
+    <style>
+        /* General body styling */
+        body, html {
+            font-family: 'Courier New', monospace;
+            background-color: black; /* Setting the background to black */
+            color: yellow; /* Changing text color to yellow */
+            margin: 0;
+            padding: 0;
+        }
 
-![Netlify + Solid](https://user-images.githubusercontent.com/43764894/223558736-6cf48156-2316-419d-8be9-e318ecf0e4be.png)
+        /* Header styling */
+        header h1 {
+            background-color: #333; /* Darker background for the header */
+            color: yellow; /* Maintaining yellow text for consistency */
+            padding: 10px;
+            text-align: center;
+        }
 
+        /* Table styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
 
+        th, td {
+            border: 1px solid #555; /* Darker border for better visibility on a black background */
+            text-align: center;
+            padding: 8px;
+        }
 
-A Solid Quickstart template that will get you started with everything you need to build a Solid project, powered by [`solid-start`](https://github.com/ryansolid/solid-start/tree/master/packages/solid-start);
+        /* Improving visibility and aesthetics */
+        th {
+            background-color: #555; /* Slightly lighter background for headers to stand out */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Airline Departure Information</h1>
+    </header>
+    <main>
+        <table id="departureBoard">
+            <!-- Dynamic rows will be inserted here by JavaScript -->
+        </table>
+    </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Here you would put your actual API fetching logic
+            // For demonstration, we'll just create dummy data
+            const data = [
+                ['Flight', 'Destination', 'Time', 'Status'],
+                ['AB123', 'New York', '08:00', 'On Time'],
+                ['CD456', 'Los Angeles', '08:30', 'Delayed'],
+                ['EF789', 'Chicago', '09:00', 'Cancelled'],
+                ['GH012', 'Miami', '09:30', 'On Time'],
+            ];
 
-Click the below button to quickly create a new repo, create a new Netlify project, and deploy!
-
-[![Deploy to Netlify Button](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/netlify-templates/solid-quickstart?utm_campaign=template-team&utm_source=dtn-button&utm_medium=dtn-button&utm_term=solid-qt-dtn-button&utm_content=solid-qt-dtn-button)
-
-## Table of Contents
-- [Project Structure](#project-structure)
-- [Getting Started](#getting-started)
-- [Building](#building)
-- [Deploying using the Netlify CLI](#deploying-using-the-netlify-cli)
-
-## Project Structure
-
-Inside of your Solidjs project, you'll see the following folders and files:
-
-```
-/
-├── public/
-│   └── favicon.ico
-├── src/
-│   ├── components/
-│   │   └── Counter.css
-│   │   └── Counter.tsx
-│   └── routes/
-│       └── [...404].tsx
-│       └── index.tsx
-├── entry-client.tsx
-├── entry-server.tsx
-├── root.css
-├── root.tsx
-├── package.json
-└── vite.config.json
-```
-
-## Getting Started
-
-If you want to get started locally, you can clone the project, install the dependencies and run the dev command!
-
-```
-git clone https://github.com/netlify-templates/solid-quickstart.git
-cd solid-quickstart
-npm install
-npm run dev
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-Solid apps are built with _adapters_, which optimise your project for deployment to different environments.
-
-By default, `npm run build` will generate a Node app that you can run with `npm start`. To use a different adapter, add it to the `devDependencies` in `package.json` and specify in your `vite.config.js`.
-
-## Deploying using the Netlify CLI
-- Install the Netlify CLI globally `npm install netlify-cli -g`
-    
-- Run `npm run build`
-
-- Then use the `netlify deploy` for a deploy preview link or `netlify deploy --prod` to deploy to production
-
-Here are a few other ways you can deploy this template:
-    
-- Use the Netlify CLI's create from template command `netlify sites:create-template solid-quickstart` which will create a repo, Netlify project, and deploy it
-    
-- If you want to utilize continuous deployment through GitHub webhooks, run the Netlify command `netlify init` to create a new project based on your repo or `netlify link` to connect your repo to an existing project
-
-Hope this template helps :) Happy coding 👩🏻‍💻!
+            const table = document.getElementById('departureBoard');
+            data.forEach((row, index) => {
+                let rowHTML = '<tr>';
+                row.forEach(cell => {
+                    rowHTML += `<td>${cell}</td>`;
+                });
+                rowHTML += '</tr>';
+                table.innerHTML += rowHTML;
+            });
+        });
+    </script>
+</body>
+</html>
